@@ -1,5 +1,3 @@
-require 'highline/import'
-
 module GameCalcs
   @@COLOURS = ['Y', 'B', 'R', 'G', 'O', 'P'] 
 
@@ -50,10 +48,10 @@ class Game
   end
 
   def play_round
-    self.player.player_guess = ask "Please enter your guess"
+    self.get_player_guess
     until valid_guess?(self.player.player_guess)
       puts "You've entered an invalid guess\nYour options are Y B R G O P"
-      self.player.player_guess = ask "Please enter your guess"
+      self.get_player_guess
     end
     self.display_round
     @@round_number += 1
@@ -86,6 +84,11 @@ class Game
 
   def valid_guess?(guess)
     (@@COLOURS + guess.split('')).uniq.length == 6 && guess.length == 4
+  end
+
+  def get_player_guess
+    puts "Please enter your guess"
+    self.player.player_guess = gets.strip
   end
 end
 
