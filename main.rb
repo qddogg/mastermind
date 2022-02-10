@@ -45,6 +45,8 @@ class Game
   def initialize
     self.player = Player.new
     self.computer = Computer.new
+    puts "Welcome to mastermind\nPlease enter 4 colours from the following options:\nY B R G O P\nAll caps no spaces\n" +
+      "O indicates correct guess, C indidates correct colour wrong location, X indicates wrong colour"
   end
 
   def play_round
@@ -69,7 +71,6 @@ class Game
   end
 
   def display_round
-    puts "CODE: #{self.computer.code}"
     puts "Current Guess: #{self.player.player_guess.split('').join('|')}"
     puts "Current Clue: #{clue(self.player.player_guess, self.computer.code)}"
   end
